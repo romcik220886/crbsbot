@@ -8,19 +8,14 @@ bot.help((ctx) => {
     ctx.reply('I can do many things! Try sending me a message.Type /start to start');
 })
 
-//tranquil-badlands-17563
-//https://tranquil-badlands-17563.herokuapp.com/
-//https://git.heroku.com/tranquil-badlands-17563.git
-
-
-bot.command('start', async (ctx) => {
+bot.command('start', (ctx) => {
     const keyboard = Telegraf.Markup.keyboard([
         ['Suche'],
         ['Dashboard'],
         ['Crown Autos', 'Big Step Autos'],
         ["Gruppe Crown Rent", "Gruppe Big Step"]
     ]).resize().oneTime().extra();
-    await ctx.reply('Hallo, ich bin ein CR&BS-Bot. Wählen Sie ein Element aus dem Menü, was Sie tun möchten.', keyboard);
+    ctx.reply('Hallo, ich bin ein CR&BS-Bot. Wählen Sie ein Element aus dem Menü, was Sie tun möchten.', keyboard);
 });
 bot.hears('Suche', (ctx) => {
     const keyboard3 = Telegraf.Markup.keyboard([
@@ -125,6 +120,6 @@ bot.on("message", (ctx) => {
 
 
 bot.launch();
-//module.exports = bot
+
 
 
