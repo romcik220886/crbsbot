@@ -79,7 +79,7 @@ bot.on("message", (ctx) => {
 
         // Get the data from your Google Sheet
         const spreadsheetId = '1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE';
-        const range = 'A:AC'; // Replace with your sheet name and range
+        const range = 'A1:ZZ'; // Replace with your sheet name and range
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId,
             range,
