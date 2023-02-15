@@ -1,5 +1,5 @@
 const sheetId = "1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE";
-const { Telegraf, Extra, Markup } = require('telegraf')
+const { Telegraf, Extra } = require('telegraf')
 
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)

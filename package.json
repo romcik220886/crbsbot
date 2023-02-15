@@ -13,7 +13,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "googleapis": "^111.0.0",
-    "telegraf": "^4.11.2"
+    "telegraf": "^4.11.2",
+    "telegram": "^2.15.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
