@@ -7,130 +7,32 @@ const bot = new Telegraf(process.env.TOKEN)
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.command('start', async (ctx) => {
-    try{
-        await ctx.replyWithHTML('Hallo, ich bin ein CR&BS-Bot. Wählen Sie ein Element aus dem Menü, was Sie tun möchten.', Markup.inlineKeyboard(
-        [
-        [Markup.button.callback('Suche', 'btn_1')],
-        [Markup.button.callback('Dashboard', 'btn_2')],
-        [Markup.button.callback('Crown Autos', 'btn_3'), Markup.button.callback('Big Step Autos', 'btn_4')],
-        [Markup.button.callback('Gruppe Crown Rent', 'btn_5'), Markup.button.callback('Gruppe Big Step', 'btn_6')]
-        ]
-        ))
-    }catch {
-        console.error(err)
-    }
-})
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_1', 'Bitte Fahrzeug Name oder Fahrgestellnummer eingeben:')
-
-
-
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_2', url = 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634')
-
-
-
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_3', url = 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881')
-
-
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_4', url = 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177')
-
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_5', url = 'https://t.me/+ldnEtjd2_LQyZDJi')
-
-function addActionBot(name, text){
-    bot.action(name, async (ctx) => {
-        try {
-            await ctx.replyWithHTML(text)
-    }catch{
-        console.error(err)
-    }
-    })
- }
-addActionBot('btn_6', url = 'https://t.me/+ueVWW_JMnqY3ZWYy')
-
-
-
-
-
-/*bot.hears('Crown Autos', async (ctx) => {
-    await ctx.replyWithHTML('Klicken Sie auf die Schaltfläche, um zum Crown Autos-Tab zu gelangen', Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-            markup.urlButton('Gehen Sie zu Crown Autos', 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881')
-        ])
-    }))
-})
-bot.hears('Big Step Autos', (ctx) => {
-    ctx.reply('Klicken Sie auf die Schaltfläche, um zur Registerkarte Big Step Autos zu gelangen', Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-            markup.urlButton('Gehen Sie zu Big Step Autos', 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177')
-        ])
-    }))
-})
-bot.hears('Dashboard', (ctx) => {
-    ctx.reply('Klicken Sie auf die Schaltfläche, um zur Registerkarte Dashboard zu wechseln', Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-            markup.urlButton('Gehen Sie zum Dashboard', 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634')
-        ]);
-    }));
-});
-bot.hears("Gruppe Crown Rent", (ctx) => {
-    ctx.reply('der Gruppe Crown Rent beitreten', Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-            markup.urlButton('Crown Rent', 'https://t.me/+ldnEtjd2_LQyZDJi')
-        ]);
-    }));
-})
-bot.hears("Gruppe Big Step", (ctx) => {
-    ctx.reply('der Gruppe Big Step beitreten', Extra.markup((markup) => {
-        return markup.inlineKeyboard([
-            markup.urlButton('Big Step', 'https://t.me/+ueVWW_JMnqY3ZWYy')
-        ]);
-    }));
-})*/
-
+    await ctx.reply('Hallo, ich bin ein CR&BS-Bot. Wählen Sie ein Element aus dem Menü, was Sie tun möchten.', {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {text: 'Suche', callback_data: 'suche', color: 'red'},
+          ],
+          [
+            {text: 'Dashboard', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634',},
+          ],
+          [
+            {text: 'Crown Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881'},
+            {text: 'Big Step Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177'},
+          ],
+          [
+            {text: 'Gruppe Crown Rent', url: 'https://t.me/+ldnEtjd2_LQyZDJi'},
+            {text: 'Gruppe Big Step', url: 'https://t.me/+ueVWW_JMnqY3ZWYy'},
+          ],   
+        ],
+      },
+    });
+  });
+  
+  bot.on('callback_query', async (ctx) => {
+    ctx.answerCbQuery();
+    ctx.reply('Bitte Fahrzeugname oder Fahrgestellnummer eingeben:');
+  });
 
 bot.on("message", (ctx) => {
 
