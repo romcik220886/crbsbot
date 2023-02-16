@@ -1,5 +1,5 @@
 const sheetId = "1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE";
-const { Telegraf, Extra, Markup } = require('telegraf')
+const { Telegraf } = require('telegraf')
 const text = require('./Const')
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)
@@ -51,16 +51,14 @@ bot.on("message", (ctx) => {
 
         // Get the data from your Google Sheet
         const spreadsheetId = '1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE';
-        const range = 'A:AC'; // Replace with your sheet name and range
+        const range = 'A:ZZ'; // Replace with your sheet name and range
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId,
             range,
             
         });
         const rows = response.data.values;
-        const link = "";
-
-
+  
         // console.log((rows));
         const array = rows;
         const firstElement = rows[0];
@@ -83,7 +81,7 @@ bot.on("message", (ctx) => {
         }
         for (let k = 0; k < arr.length; k++) {
 
-            ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n VIN: ${arr[k].VIN}\n Verkäufer: ${arr[k]['Verkäufer']}\n Von: ${arr[k].Von}\n Einkaufspreis: ${arr[k].Einkaufspreis}\n Liefertermin: ${arr[k].Liefertermin}\n Anzahlung: ${arr[k]['Anzahlung ']}\n Verkaufspreis: ${arr[k].Verkaufspreis}\n Eikaufsdatum: ${arr[k].Eikaufsdatum}\n Vertrag: ${arr[k].Vertrag}\n Proforma: ${arr[k].Proforma}\n Rechnung:${arr[k].Rechnung}\n Datum: ${arr[k].Datum}\n AN: ${arr[k].An}\n AV: ${arr[k].AV}\n Transport:${arr[k].Transport}\n Gewinn:${arr[k].Gewinn}\n Kommentare: ${arr[k]["Kommentare"]}\n`);
+            ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n VIN: ${arr[k].VIN}\n Verkäufer: ${arr[k]['Verkäufer']}\n Von: ${arr[k].Von}\n Einkaufspreis: ${arr[k].Einkaufspreis}\n Liefertermin: ${arr[k].Liefertermin}\n Anzahlung: ${arr[k]['Anzahlung ']}\n Verkaufspreis: ${arr[k].Verkaufspreis}\n Eikaufsdatum: ${arr[k].Eikaufsdatum}\n Vertrag: ${arr[k].Vertrag}\n Proforma: ${arr[k].Proforma}\n Rechnung: ${arr[k].Rechnung}\n Datum: ${arr[k].Datum}\n An: ${arr[k].An}\n Av: ${arr[k].AV}\n Gewinn: ${arr[k].Gewinn}\n Kommentare: ${arr[k]["Kommentare"]}`);
         }
     }).catch((err) => {
         console.error(err);
