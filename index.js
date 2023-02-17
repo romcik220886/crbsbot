@@ -58,15 +58,14 @@ bot.on("message", (ctx) => {
             
         });
         const rows = response.data.values;
-  
-        // console.log((rows));
         const array = rows;
         const firstElement = rows[0];
-
         const searchTerm = ctx.message.text;
 
         // Find the row that contains the search term
-        const result = array.filter(subarray => subarray.some(item => item.toString().includes(searchTerm)));
+        const result = array.filter(subarray => 
+          subarray.some((item) => 
+            item.toString().toLowerCase().includes(searchTerm.toLowerCase())));
         const secondElement = result;
         let arr = [];
 
