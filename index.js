@@ -28,7 +28,7 @@ bot.command('start', async (ctx) => {
       },
     });
   });
-  
+
   bot.on('callback_query', async (ctx) => {
     ctx.answerCbQuery();
     ctx.reply('Bitte Fahrzeugname oder Fahrgestellnummer eingeben:');
@@ -65,8 +65,6 @@ bot.on("message", (ctx) => {
 
         const searchTerm = ctx.message.text;
 
-
-
         // Find the row that contains the search term
         const result = array.filter(subarray => subarray.some(item => item.toString().includes(searchTerm)));
         const secondElement = result;
@@ -81,7 +79,7 @@ bot.on("message", (ctx) => {
         }
         for (let k = 0; k < arr.length; k++) {
 
-            ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n VIN: ${arr[k].VIN}\n Verkäufer: ${arr[k]['Verkäufer']}\n Von: ${arr[k].Von}\n Einkaufspreis: ${arr[k].Einkaufspreis}\n MwSt: ${arr[k].MwSt}\n Liefertermin: ${arr[k].Liefertermin}\n Anzahlung: ${arr[k]['Anzahlung ']}\n Verkaufspreis: ${arr[k].Verkaufspreis}\n Eikaufsdatum: ${arr[k].Eikaufsdatum}\n Vertrag: ${arr[k].Vertrag}\n Proforma: ${arr[k].Proforma}\n Rechnung: ${arr[k].Rechnung}\n Datum: ${arr[k].Datum}\n An: ${arr[k].An}\n Av: ${arr[k].AV}\n Gewinn: ${arr[k].Gewinn}`);
+            ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n VIN: ${arr[k].VIN}\n Verkäufer: ${arr[k]['Verkäufer']}\n Von: ${arr[k].Von}\n Einkaufspreis: ${arr[k].Einkaufspreis}\n MwSt: ${arr[k].MwSt}\n Liefertermin: ${arr[k].Liefertermin}\n Anzahlung: ${arr[k]['Anzahlung ']}\n Verkaufspreis: ${arr[k].Verkaufspreis}\n Eikaufsdatum: ${arr[k].Eikaufsdatum}\n Vertrag: ${arr[k].Vertrag}\n Proforma: ${arr[k].Proforma}\n Rechnung: ${arr[k].Rechnung}\n Datum: ${arr[k].Datum}\n An: ${arr[k].An}\n Av: ${arr[k].AV}\n Gewinn: ${arr[k].Gewinn}\n Kommentare: ${arr[k]["Kommentare"]}`);
         }
     }).catch((err) => {
         console.error(err);
