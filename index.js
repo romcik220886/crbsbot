@@ -80,7 +80,7 @@ bot.on("message", (ctx) => {
         for (let k = 0; k < arr.length; k++) {
 
             ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n 
-VIN: ${arr[k].VIN}\n Verkäufer: ${arr[k]['Verkäufer']}\n Von: ${arr[k].Von}\n Einkaufspreis: ${arr[k].Einkaufspreis}\n MwSt: ${arr[k].MwSt}\n Liefertermin: ${arr[k].Liefertermin}\n Anzahlung: ${arr[k]['Anzahlung ']}\n Verkaufspreis: ${arr[k].Verkaufspreis}\n Eikaufsdatum: ${arr[k].Eikaufsdatum}\n Vertrag: ${arr[k].Vertrag}\n Proforma: ${arr[k].Proforma}\n Rechnung: ${arr[k].Rechnung}\n Datum: ${arr[k].Datum}\n An: ${arr[k].An}\n Av: ${arr[k].AV}\n Gewinn: ${arr[k].Gewinn}\n Kommentare: ${arr[k]["Kommentare"]}`);
+VIN: ${arr[k].VIN}\nVerkäufer: ${arr[k]['Verkäufer']}\nVon: ${arr[k].Von}\nEinkaufspreis: ${arr[k].Einkaufspreis}\nMwSt: ${arr[k].MwSt}\nLiefertermin: ${arr[k].Liefertermin}\nAnzahlung: ${arr[k]['Anzahlung ']}\nVerkaufspreis: ${arr[k].Verkaufspreis}\nEikaufsdatum: ${arr[k].Eikaufsdatum}\nVertrag: ${arr[k].Vertrag}\nProforma: ${arr[k].Proforma}\nRechnung: ${arr[k].Rechnung}\nDatum: ${arr[k].Datum}\nAn: ${arr[k].An}\nAv: ${arr[k].AV}\nGewinn: ${arr[k].Gewinn}\nKommentare: ${arr[k]["Kommentare"]}`);
         }
     }).catch((err) => {
         console.error(err);
