@@ -11,7 +11,7 @@ bot.command('start', async (ctx) => {
       reply_markup: {
         inline_keyboard: [
           [
-            {text: 'Suche', callback_data: 'suche', color: 'red'},
+            {text: 'Suche', callback_data: 'suche',},
           ],
           [
             {text: 'Dashboard', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634',},
@@ -66,6 +66,7 @@ bot.on("message", (ctx) => {
         const result = array.filter(subarray => 
           subarray.some((item) => 
             item.toString().toLowerCase().includes(searchTerm.toLowerCase())));
+
         const secondElement = result;
         let arr = [];
 
@@ -76,11 +77,27 @@ bot.on("message", (ctx) => {
             }
             arr.push(obj);
         }
-        for (let k = 0; k < arr.length; k++) {
+
+        for (let k = 0; k < arr.length; k++) { 
+          let replyMessage = `Fahrzeug: ${arr[k].Fahrzeug}\n  
+Dokumente: ${arr[k]['Docs']}\nVIN: ${arr[k].VIN}\nVerkäufer: ${arr[k]['Verkäufer']}\nVon: ${arr[k].Von}\nEinkaufspreis: ${arr[k].Einkaufspreis}\nMwSt: ${arr[k].MwSt}\nLiefertermin: ${arr[k].Liefertermin}\nAnzahlung: ${arr[k]['Anzahlung ']}\nVerkaufspreis: ${arr[k].Verkaufspreis}\nEikaufsdatum: ${arr[k].Eikaufsdatum}\nVertrag: ${arr[k].Vertrag}\nProforma: ${arr[k].Proforma}\nRechnung: ${arr[k].Rechnung}\nDatum: ${arr[k].Datum}\nAn: ${arr[k].An}\nAv: ${arr[k].AV}\nGewinn: ${arr[k].Gewinn}\nKommentare: ${arr[k]["Kommentare"]}\n`;
+
+          // Check each cell of the row for a hyperlink and include it in the reply message if found
+         for (const [key, value] of Object.entries(arr[k])) {
+              if (typeof value === 'string' && value.includes('http')) {
+                  replyMessage += `${key}: <a href="${value}">${value}</a>\n`;
+              }
+          }
+          ctx.replyWithHTML(replyMessage);
+      }
+
+        /*for (let k = 0; k < arr.length; k++) {
 
             ctx.reply(`Fahrzeug: ${arr[k].Fahrzeug}\n 
-VIN: ${arr[k].VIN}\nVerkäufer: ${arr[k]['Verkäufer']}\nVon: ${arr[k].Von}\nEinkaufspreis: ${arr[k].Einkaufspreis}\nMwSt: ${arr[k].MwSt}\nLiefertermin: ${arr[k].Liefertermin}\nAnzahlung: ${arr[k]['Anzahlung ']}\nVerkaufspreis: ${arr[k].Verkaufspreis}\nEikaufsdatum: ${arr[k].Eikaufsdatum}\nVertrag: ${arr[k].Vertrag}\nProforma: ${arr[k].Proforma}\nRechnung: ${arr[k].Rechnung}\nDatum: ${arr[k].Datum}\nAn: ${arr[k].An}\nAv: ${arr[k].AV}\nGewinn: ${arr[k].Gewinn}\nKommentare: ${arr[k]["Kommentare"]}`);
-        }
+Dokumente: ${arr[k]['Docs']}\nVIN: ${arr[k].VIN}\nVerkäufer: ${arr[k]['Verkäufer']}\nVon: ${arr[k].Von}\nEinkaufspreis: ${arr[k].Einkaufspreis}\nMwSt: ${arr[k].MwSt}\nLiefertermin: ${arr[k].Liefertermin}\nAnzahlung: ${arr[k]['Anzahlung ']}\nVerkaufspreis: ${arr[k].Verkaufspreis}\nEikaufsdatum: ${arr[k].Eikaufsdatum}\nVertrag: ${arr[k].Vertrag}\nProforma: ${arr[k].Proforma}\nRechnung: ${arr[k].Rechnung}\nDatum: ${arr[k].Datum}\nAn: ${arr[k].An}\nAv: ${arr[k].AV}\nGewinn: ${arr[k].Gewinn}\nKommentare: ${arr[k]["Kommentare"]}`);
+        }*/
+
+
     }).catch((err) => {
         console.error(err);
     });
