@@ -74,7 +74,9 @@ bot.command('start', async (ctx) => {
     
     
       // Find the row that contains the search term
-      const result = array.filter(subarray => subarray.some(item => item.toString().includes(searchTerm)));
+      const result = array.filter(subarray => 
+        subarray.some(item => 
+          item.toString().toLowerCase().includes(searchTerm.toLowerCase())));
       const secondElement = result;
       console.log(result)
       let arr = [];
