@@ -37,7 +37,6 @@ bot.command('start', async (ctx) => {
   });
 
   bot.on("message",(ctx) =>{
-    n
     const { google } = require('googleapis');
     const keys = require('./credentials.json');
     
