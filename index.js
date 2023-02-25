@@ -7,7 +7,7 @@ const bot = new Telegraf(process.env.TOKEN)
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.command('start', async (ctx) => {
-    await ctx.reply('Привет, я СR&BS бот. Выбери один пункт из меню, что ты хочешь делать:', {
+    await ctx.reply('Привет ' + ctx.from.first_name +', я СR&BS бот.\n\nВыбери один пункт из меню:', {
       reply_markup: {
         inline_keyboard: [
           [
@@ -32,13 +32,12 @@ bot.command('start', async (ctx) => {
 
 
   bot.on('callback_query', async (ctx) => {
-    ctx.answerCbQuery();
-    ctx.reply('Для поиска введи один из следующих параметров:\n1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец\n4. Цена покупки/продажи\n5. Номер счета');
+    await ctx.answerCbQuery();
+    await ctx.reply('Для поиска введи один из следующих параметров:\n1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец\n4. Цена покупки/продажи\n5. Номер счета');
   });
 
   bot.on("message",(ctx) =>{
-
-
+    n
     const { google } = require('googleapis');
     const keys = require('./credentials.json');
     
@@ -58,22 +57,17 @@ bot.command('start', async (ctx) => {
         spreadsheetId,
         range
       });
-      
-    const res = await sheets.spreadsheets.get({
+      const res = await sheets.spreadsheets.get({
       spreadsheetId,
       includeGridData: true,
       ranges: range,
     });
       const rows = response.data.values;
     
-    
       // console.log((rows));
       const array = rows;
       const firstElement = rows[0];
-    
       const searchTerm = ctx.message.text;
-    
-    
     
       // Find the row that contains the search term
       const result = array.filter(subarray => 
