@@ -3,6 +3,7 @@ const { Telegraf, Extra, markup } = require('telegraf')
 const text = require('./Const')
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)
+const colors = require('colors');
 
 bot.help((ctx) => ctx.reply(text.commands))
 
@@ -11,29 +12,29 @@ bot.command('start', async (ctx) => {
       reply_markup: {
         inline_keyboard: [
           [
-            {text: 'Поиск', callback_data: 'suche',},
+            {text: 'Поиск  🔍', callback_data: 'search'}
           ],
           [
-            {text: 'Обзор данных', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634',},
+            {text: 'Обзор данных', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634'}
           ],
           [
             {text: 'Таблица Crown Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881'},
-            {text: 'Таблица Big Step Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177'},
+            {text: 'Таблица Big Step Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177'}
           ],
           [
             {text: 'Группа Crown Rent', url: 'https://t.me/+ldnEtjd2_LQyZDJi'},
-            {text: 'Группа Big Step', url: 'https://t.me/+ueVWW_JMnqY3ZWYy'},
-          ],   
-        ],
-      },
-    });
-  });
+            {text: 'Группа Big Step', url: 'https://t.me/+ueVWW_JMnqY3ZWYy'}
+          ]  
+        ]
+      }
+    })
+  })
 
 
 
   bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
-    await ctx.reply('Для поиска введи один из следующих параметров:\n1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец\n4. Цена покупки/продажи\n5. Номер счета');
+    await ctx.reply('Для поиска введи один из следующих параметров:\n\n1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец/Покупатель\n4. Цена покупки/продажи\n5. Номер счета');
   });
 
   bot.on("message",(ctx) =>{
@@ -94,8 +95,6 @@ Dokumente: <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[1].hy
       console.error(err);
     });
     })
-    
-    
     
     bot.launch();
 
