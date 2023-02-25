@@ -1,5 +1,5 @@
 const sheetId = "1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE";
-const { Telegraf } = require('telegraf')
+const { Telegraf, Extra, markup } = require('telegraf')
 const text = require('./Const')
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)
@@ -7,31 +7,33 @@ const bot = new Telegraf(process.env.TOKEN)
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.command('start', async (ctx) => {
-    await ctx.reply('Hallo, ich bin ein CR&BS-Bot. Wählen Sie ein Element aus dem Menü, was Sie tun möchten.', {
+    await ctx.reply('Привет, я СR&BS бот. Выбери один пункт из меню, что ты хочешь делать:', {
       reply_markup: {
         inline_keyboard: [
           [
-            {text: 'Suche', callback_data: 'suche',},
+            {text: 'Поиск', callback_data: 'suche',},
           ],
           [
-            {text: 'Dashboard', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634',},
+            {text: 'Обзор данных', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634',},
           ],
           [
-            {text: 'Crown Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881'},
-            {text: 'Big Step Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177'},
+            {text: 'Таблица Crown Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881'},
+            {text: 'Таблица Big Step Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=382018177'},
           ],
           [
-            {text: 'Gruppe Crown Rent', url: 'https://t.me/+ldnEtjd2_LQyZDJi'},
-            {text: 'Gruppe Big Step', url: 'https://t.me/+ueVWW_JMnqY3ZWYy'},
+            {text: 'Группа Crown Rent', url: 'https://t.me/+ldnEtjd2_LQyZDJi'},
+            {text: 'Группа Big Step', url: 'https://t.me/+ueVWW_JMnqY3ZWYy'},
           ],   
         ],
       },
     });
   });
 
+
+
   bot.on('callback_query', async (ctx) => {
     ctx.answerCbQuery();
-    ctx.reply('Bitte Fahrzeugname oder Fahrgestellnummer eingeben:');
+    ctx.reply('Для поиска введи один из следующих параметров:\n1. Марка автомобиля\n2. VIN номер (последние 4 цифрыs)\n3. Продавец\n4. Цена покупки/продажи\n5. Номер счета');
   });
 
   bot.on("message",(ctx) =>{
