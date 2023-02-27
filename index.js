@@ -1,14 +1,13 @@
 const sheetId = "1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE";
-const { Telegraf, Extra, markup } = require('telegraf')
+const { Telegraf, Markup} = require('telegraf')
 const text = require('./Const')
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)
-const colors = require('colors');
 
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.command('start', async (ctx) => {
-    await ctx.reply('Привет ' + ctx.from.first_name +', я СR&BS бот.\n\nВыбери один пункт из меню:', {
+    await ctx.replyWithHTML('<b>Привет ' + ctx.from.first_name +', я СR&BS бот.</b>\n\n<i>Выбери один пункт из меню:</i>', {
       reply_markup: {
         inline_keyboard: [
           [
@@ -30,11 +29,9 @@ bot.command('start', async (ctx) => {
     })
   })
 
-
-
   bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
-    await ctx.reply('Для поиска введи один из следующих параметров:\n\n1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец/Покупатель\n4. Цена покупки/продажи\n5. Номер счета');
+    await ctx.replyWithHTML('<b>Для поиска введи один из следующих параметров:</b>\n\n<i>1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец/Покупатель\n4. Цена покупки/продажи\n5. Номер счета</i>');
   });
 
   bot.on("message",(ctx) =>{
