@@ -14,7 +14,7 @@ bot.command('start', async (ctx) => {
             {text: 'Поиск  🔍', callback_data: 'search'}
           ],
           [
-            {text: 'Обзор данных', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634'}
+            {text: 'Статистика  📈', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=1994648634'}
           ],
           [
             {text: 'Таблица Crown Autos', url: 'https://docs.google.com/spreadsheets/d/1Dt2OZUrcfErKpIFiRjE2s8_GfMi20LX9CM0-gVjbvgE/edit#gid=811524881'},
