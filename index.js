@@ -4,6 +4,8 @@ const text = require('./Const')
 require('dotenv').config()
 const bot = new Telegraf(process.env.TOKEN)
 
+
+
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.command('start', async (ctx) => {
@@ -29,6 +31,7 @@ bot.command('start', async (ctx) => {
     })
   })
 
+  
   bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
     await ctx.replyWithHTML('<b>Для поиска введи один из следующих параметров:</b>\n\n<i>1. Марка автомобиля\n2. VIN номер (последние 4 цифры)\n3. Продавец/Покупатель\n4. Цена покупки/продажи\n5. Номер счета</i>');
@@ -37,7 +40,7 @@ bot.command('start', async (ctx) => {
   bot.on("message",(ctx) =>{
     const { google } = require('googleapis');
     const keys = require('./credentials.json');
-    
+
     // Authenticate with the Google Sheets API using your service credentials
     google.auth.getClient({
       credentials: keys,
@@ -82,8 +85,8 @@ bot.command('start', async (ctx) => {
       arr.push(obj);
     }
       for(let k =0; k < arr.length; k++){
-        let replyMessage = `Fahrzeug: ${arr[k].Fahrzeug}\n  
-Dokumente: <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[1].hyperlink}">Docs</a>\nVIN: ${arr[k].VIN}\nVerkäufer: <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[3].hyperlink}">${arr[k]['Verkäufer']}</a>\nVon: ${arr[k].Von}\nEinkaufspreis: ${arr[k].Einkaufspreis}\nMwSt: ${arr[k].MwSt}\nLiefertermin: ${arr[k].Liefertermin}\nAnzahlung: ${arr[k]['Anzahlung ']}\nVerkaufspreis: <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[11].hyperlink}">${arr[k].Verkaufspreis}</a>\nEikaufsdatum: ${arr[k].Eikaufsdatum}\nVertrag:<a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[14].hyperlink}"> ${arr[k].Vertrag}</a>\nProforma: <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[15].hyperlink}">${arr[k].Proforma}</a>\nRechnung:<a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[17].hyperlink}"> ${arr[k].Rechnung}</a>\nDatum: ${arr[k].Datum}\nAn: ${arr[k].An}\nAv: ${arr[k].AV}\nGewinn: ${arr[k].Gewinn}\nKommentare: ${arr[k]["Kommentare"]}\n`;
+        let replyMessage = `<b>Автомобиль</b>:   <i>${arr[k].Fahrzeug}</i>\n  
+<b>Документы:</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[1].hyperlink}"><i>Docs</i></a>\n<b>VIN:</b>   <i>${arr[k].VIN}</i>\n<b>Продавец:</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[3].hyperlink}"><i>${arr[k]['Verkäufer']}</i></a>\n<b>Куплено на компанию:</b>   <i>${arr[k].Von}</i>\n<b>Цена покупки(нетто):</b>   <i>${arr[k].Einkaufspreis}</i>\n<b>НДС:</b>   <i>${arr[k].MwSt}</i>\n<b>Дата поставки:</b>   <i>${arr[k].Liefertermin}</i>\n<b>Предоплата:</b>   <i>${arr[k]['Anzahlung ']}</i>\n<b>Цена продажи(нетто):</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[11].hyperlink}"><i>${arr[k].Verkaufspreis}</i></a>\n<b>Дата покупки:</b>   <i>${arr[k].Eikaufsdatum}</i>\n<b>Договор:</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[14].hyperlink}"><i>${arr[k].Vertrag}</i></a>\n<b>Счёт-проформа:</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[15].hyperlink}"><i>${arr[k].Proforma}</i></a>\n<b>Счёт:</b>   <a href="${res.data.sheets[0].data[0].rowData[arr[k].No].values[17].hyperlink}"><i>${arr[k].Rechnung}</i></a>\n<b>Дата:</b>   <i>${arr[k].Datum}</i>\n<b>Продано на:</b>   <i>${arr[k].An}</i>\n<b>Подтверждение о вывозе:</b>   <i>${arr[k].AV}</i>\n<b>Прибыль:</b>   <i>${arr[k].Gewinn}</i>\n<b>Комментарии:</b>   <i>${arr[k]["Kommentare"]}</i>`;
         
         ctx.replyWithHTML(replyMessage);
         console.log(res.data.sheets[0].data[0].rowData[24].values[14])
